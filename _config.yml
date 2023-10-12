@@ -1,9 +1,8 @@
 menu:
     Blog: /
     Archive: /archives/
-    Weibo: http://weibo.com/sunchongsheng
-    GitHub: https://github.com/pinggod
-    Rss: /atom.xml
+    GitHub: https://github.com/Adooobe
+    RED: https://www.xiaohongshu.com/user/profile/578ae95d82ec396a701d61d7?channelType=web_engagement_notification_page&channelTabId=mentions
 
 favicon: /favicon.png
 logo: /favicon.png
@@ -18,4 +17,13 @@ duoshuo:
 # ga: UA-xxxxxxxx-x
 
 # Copyright Infomation
-startyear: 2015
+startyear: 2023
+
+math:
+    enable: true
+    engine: mathjax
+
+mathjax:
+    enable: true
+    per_page: true
+    cdn: //cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML
