@@ -26,3 +26,8 @@ mathjax:
     enable: true
     per_page: true
     cdn: //cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-MML-AM_CHTML
+
+# Mermaid diagram support
+mermaid:
+    enable: true
+    version: "10.6.1"
