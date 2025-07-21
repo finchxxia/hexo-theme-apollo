@@ -1,0 +1,18 @@
+extends partial/layout
+
+block container
+    .category-header
+        h1.category-title
+            | 分类：#{page.category}
+        .category-count
+            | 共 #{page.posts.length} 篇文章
+    
+    include mixins/post
+    +postList()
+
+block pagination
+    include mixins/paginator
+    +home()
+
+block copyright
+    include partial/copyright 

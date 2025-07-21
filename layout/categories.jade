@@ -1,0 +1,18 @@
+extends partial/layout
+
+block container
+    .categories-header
+        h1.categories-title 文章分类
+        .categories-description 按分类浏览所有文章
+    
+    .categories-content
+        - var categoriesList = list_categories({ show_count: true, style: 'list' })
+        if categoriesList
+            != categoriesList
+        else
+            .no-categories 
+                p 暂无分类，
+                    a(href=url_for('/')) 返回首页
+
+block copyright
+    include partial/copyright 

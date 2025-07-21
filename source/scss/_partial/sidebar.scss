@@ -1,0 +1,301 @@
+// 侧边栏样式优化
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding-top: 80px; // 为header留出空间
+    overflow-y: auto;
+    
+    // 自定义滚动条
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 3px;
+        
+        &:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+    }
+    
+    .sidebar-content {
+        padding: 30px 20px;
+    }
+    
+    .category-section {
+        margin-bottom: 40px;
+    }
+    
+    .sidebar-title {
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 25px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 2px;
+        }
+    }
+    
+    .category-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        
+        li {
+            margin-bottom: 8px;
+            
+            a {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 12px 16px;
+                color: rgba(255, 255, 255, 0.9);
+                text-decoration: none;
+                border-radius: 8px;
+                font-size: 14px;
+                font-weight: 500;
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+                
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+                    transition: left 0.5s ease;
+                }
+                
+                &:hover {
+                    background: rgba(255, 255, 255, 0.15);
+                    transform: translateX(5px);
+                    color: #ffffff;
+                    
+                    &::before {
+                        left: 100%;
+                    }
+                }
+                
+                &.current {
+                    background: rgba(255, 255, 255, 0.2);
+                    color: #ffffff;
+                    font-weight: 600;
+                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                    
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        width: 4px;
+                        height: 100%;
+                        background: #ffffff;
+                        border-radius: 0 2px 2px 0;
+                    }
+                }
+                
+                .category-name {
+                    flex: 1;
+                }
+                
+                .category-count {
+                    background: rgba(255, 255, 255, 0.2);
+                    color: #ffffff;
+                    font-size: 12px;
+                    padding: 4px 8px;
+                    border-radius: 12px;
+                    font-weight: 600;
+                    min-width: 24px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+    
+    .no-categories {
+        color: rgba(255, 255, 255, 0.7);
+        font-style: italic;
+        text-align: center;
+        padding: 20px;
+        font-size: 14px;
+    }
+}
+
+// 主内容区域调整
+.main-content {
+    margin-left: 280px;
+    min-height: 100vh;
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    .container {
+        padding: 20px;
+        max-width: none;
+        margin: 0;
+    }
+}
+
+// 移动端切换按钮美化
+.sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    
+    .toggle-btn {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+        transition: all 0.3s ease;
+        
+        &:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
+        }
+        
+        .toggle-line {
+            width: 20px;
+            height: 2px;
+            background-color: white;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 1px;
+        }
+        
+        &.active {
+            .toggle-line:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .toggle-line:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .toggle-line:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+        }
+    }
+}
+
+// 分类页面标题样式优化
+.category-header {
+    margin-bottom: 40px;
+    padding: 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    
+    .category-title {
+        margin: 0 0 15px 0;
+        font-size: 28px;
+        font-weight: 700;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .category-count {
+        font-size: 16px;
+        opacity: 0.9;
+        font-weight: 500;
+    }
+}
+
+// Categories索引页面样式
+.categories-header {
+    margin-bottom: 40px;
+    text-align: center;
+    
+    .categories-title {
+        color: #2c3e50;
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+    
+    .categories-description {
+        color: #7f8c8d;
+        font-size: 16px;
+        margin-bottom: 0;
+    }
+}
+
+.categories-content {
+    .category-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        list-style: none;
+        padding: 0;
+        
+        li {
+            a {
+                display: block;
+                padding: 25px;
+                background: white;
+                border-radius: 15px;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+                text-decoration: none;
+                color: #2c3e50;
+                transition: all 0.3s ease;
+                border: 2px solid transparent;
+                
+                &:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+                    border-color: #667eea;
+                }
+                
+                .category-name {
+                    font-size: 18px;
+                    font-weight: 600;
+                    margin-bottom: 8px;
+                    color: #2c3e50;
+                }
+                
+                .category-count {
+                    font-size: 14px;
+                    color: #7f8c8d;
+                    
+                    &::before {
+                        content: '📁 ';
+                    }
+                }
+            }
+        }
+    }
+} 

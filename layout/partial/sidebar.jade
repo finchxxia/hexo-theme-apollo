@@ -1,0 +1,35 @@
+.sidebar-content
+    .category-section
+        h3.sidebar-title Categories
+        .categories-list
+            each category in site.categories.toArray()
+                .category-group
+                    .category-header(data-category=category.name)
+                        .category-name #{category.name}
+                        .category-count #{category.posts.length}
+                        .category-arrow ▶
+                    .category-posts(style="display:none;")
+                        each post in category.posts.toArray()
+                            .post-item
+                                a(href=url_for(post.path)) #{post.title}
+                                    span.post-date #{date(post.date, 'MM-DD')}
+            
+            // 添加 Other 分类用于未分类的文章
+            - var uncategorizedPosts = site.posts.toArray().filter(function(post) { return post.categories.length === 0; });
+            if uncategorizedPosts.length > 0
+                .category-group
+                    .category-header(data-category="Other")
+                        .category-name Other
+                        .category-count #{uncategorizedPosts.length}
+                        .category-arrow ▶
+                    .category-posts(style="display:none;")
+                        each post in uncategorizedPosts
+                            .post-item
+                                a(href=url_for(post.path)) #{post.title}
+                                    span.post-date #{date(post.date, 'MM-DD')}
+    
+    .sidebar-toggle
+        .toggle-btn
+            span.toggle-line
+            span.toggle-line
+            span.toggle-line 

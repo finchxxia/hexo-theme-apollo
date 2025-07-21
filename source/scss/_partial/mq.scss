@@ -1,49 +1,214 @@
+// 基础布局
 main.container {
-    margin: 2em 10px;
+    margin: 2em 0;
+    padding: 0 20px;
 }
 
-@media screen and (min-width: 700px) {
+// 大屏幕
+@media screen and (min-width: 1200px) {
+    .sidebar {
+        width: 300px;
+    }
+    
+    .main-content {
+        margin-left: 300px;
+    }
+}
+
+// 标准桌面端
+@media screen and (min-width: 768px) {
     .wrap {
-        width: 700px;
+        width: 100%;
         margin: 0 auto;
     }
+    
     header {
-        padding: 20px 100px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1002;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        padding: 15px 320px 15px 20px; // 为侧边栏留出空间
+    }
+    
+    .main-content {
+        padding-top: 80px; // 为fixed header留出空间
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
     }
 }
 
-@media screen and (max-width: 700px) {
+// 平板端
+@media screen and (max-width: 768px) {
+    // 隐藏侧边栏
+    .sidebar {
+        transform: translateX(-100%);
+        
+        &.show {
+            transform: translateX(0);
+        }
+    }
+    
+    // 主内容区域恢复全宽
+    .main-content {
+        margin-left: 0;
+        padding-top: 0;
+        
+        .container {
+            padding: 20px 15px;
+        }
+    }
+    
+    // 显示切换按钮
+    .sidebar-toggle {
+        display: block;
+    }
+    
+    // Header调整
+    header {
+        position: relative;
+        padding: 20px 80px 20px 20px; // 为切换按钮留出空间
+        box-shadow: none;
+        background: white;
+    }
+    
+    // 分类页面标题在移动端的调整
+    .category-header {
+        margin: 20px 15px 30px;
+        padding: 25px 20px;
+        
+        .category-title {
+            font-size: 24px;
+        }
+        
+        .category-count {
+            font-size: 14px;
+        }
+    }
+}
+
+// 小屏幕手机端
+@media screen and (max-width: 480px) {
     .wrap {
         width: 100%;
     }
+    
     header {
-        padding: 20px 0;
+        padding: 15px 70px 15px 15px;
+        
         a.logo-link,
         ul.nav.nav-list {
             float: none;
             display: block;
             text-align: center;
         }
+        
         li.nav-list-item {
-            padding: 10px 10px;
+            padding: 8px 5px;
+            
+            a {
+                font-size: 14px;
+            }
         }
     }
+    
+    .sidebar-toggle {
+        top: 15px;
+        left: 15px;
+        
+        .toggle-btn {
+            width: 40px;
+            height: 40px;
+            
+            .toggle-line {
+                width: 16px;
+            }
+        }
+    }
+    
+    .sidebar {
+        width: 260px;
+        
+        .sidebar-content {
+            padding: 20px 15px;
+        }
+        
+        .sidebar-title {
+            font-size: 18px;
+        }
+        
+        .category-list li a {
+            padding: 10px 12px;
+            font-size: 13px;
+        }
+    }
+    
     main.container,
     .home.post-list,
     .archive {
         margin-top: 0;
+        padding: 15px;
     }
+    
     .archive .post-item {
-        padding-left: 20px;
+        padding-left: 15px;
     }
+    
     .post-content {
         h2, h3, h4, h5, h6 {
-            max-width: 300px;
-            left: 15px;
+            max-width: 280px;
+            left: 10px;
         }
     }
+    
     .ds-thread,
     #disqus_thread {
-        margin: 2em 10px;
+        margin: 2em 15px;
+    }
+    
+    // Categories网格在手机端改为单列
+    .categories-content .category-list {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        
+        li a {
+            padding: 20px 15px;
+        }
+    }
+    
+    .category-header {
+        margin: 15px;
+        padding: 20px 15px;
+        
+        .category-title {
+            font-size: 20px;
+        }
+    }
+}
+
+// 超小屏幕
+@media screen and (max-width: 320px) {
+    .sidebar {
+        width: 240px;
+    }
+    
+    .sidebar-toggle {
+        .toggle-btn {
+            width: 35px;
+            height: 35px;
+            
+            .toggle-line {
+                width: 14px;
+                height: 1.5px;
+                margin: 2px 0;
+            }
+        }
     }
 }
